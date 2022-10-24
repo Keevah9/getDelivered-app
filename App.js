@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { TailwindProvider } from "tailwindcss-react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import StartScreen from "./screens/StartScreen";
+import HomeScreen from "./screens/HomeScreen";
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <TailwindProvider>
+        <SafeAreaProvider>
+          <Stack.Navigator>
+            <Stack.Screen name="Home" component={HomeScreen} />
+          </Stack.Navigator>
+         
+        </SafeAreaProvider>
+      </TailwindProvider>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
